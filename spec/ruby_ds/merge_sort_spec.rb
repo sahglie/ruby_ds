@@ -5,12 +5,11 @@ describe MergeSort do
   let(:heap) { MaxBinaryHeap.new }
 
   context('#initialize') do
-    it "works" do
-      # items = [8, 7, 6, 5, 4, 3, 2, 1]
+    it 'sorts items sequentially' do
       items = [6, 7, 8, 9, 5, 4, 3, 2, 1]
-      ms = MergeSort.new(items)
-      ms.sort
-      pp items
+      MergeSort.new(items).sort
+
+      expect(items).to eql([1, 2, 3, 4, 5, 6, 7, 8, 9])
     end
   end
 end
