@@ -23,7 +23,8 @@ describe Trie do
 
   context('#put(key, val)') do
     it 'stores values by key' do
-
+      trie.put('hat', 1)
+      expect(trie.get('hat')).to eql(1)
     end
   end
 
@@ -31,6 +32,7 @@ describe Trie do
     it 'retrieves values by key' do
       trie.put('hat', 1)
       expect(trie.get('hat')).to eql(1)
+      expect(trie.get('ha')).to be_nil
 
       trie.put('hatter', 2)
       expect(trie.get('hatter')).to eql(2)
@@ -39,4 +41,11 @@ describe Trie do
     end
   end
 
+  context('#delete(key') do
+    it "should remove the key" do
+      trie.put('hat', 1)
+      expect(trie.delete('hat')).to eql(1)
+      expect(trie.get("hat")).to be_nil
+    end
+  end
 end

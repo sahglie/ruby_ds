@@ -22,15 +22,15 @@ class Trie
   end
 
   def get(key)
-    if key.nil?
-      nil
-    else
-      do_get(root, key, 0)
-    end
+    key.nil? ? nil : do_get(root, key, 0)
   end
 
   def contains?(key)
-    get(key).nil?
+    get(key)
+  end
+
+  def delete(key)
+    do_delete(root, key, 0)
   end
 
   private
@@ -56,13 +56,21 @@ class Trie
   end
 
   def do_get(node, key, pos)
+    return nil if node.nil?
+    return node.val if key.length == pos
+    do_get(node.next[key[pos].ord], key, pos+1)
+  end
+
+  def do_delete(node, key, pos)
     if node.nil?
       nil
     elsif key.length == pos
-      node.val
+      tmp = node.val
+      node.val = nil
+      tmp
     else
-      do_get(node.next[key[pos].ord], key, pos+1)
+      index = key[pos].ord
+      do_delete(node.next[index], key, pos+1)
     end
   end
-
 end
