@@ -18,7 +18,7 @@ class Trie
   end
 
   def put(key, val)
-    do_put(root, key, val, 0)
+    @root = do_put(@root, key, val, 0)
   end
 
   def get(key)

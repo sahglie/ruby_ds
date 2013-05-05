@@ -23,8 +23,11 @@ describe Trie do
 
   context('#put(key, val)') do
     it 'stores values by key' do
-      trie.put('hat', 1)
-      expect(trie.get('hat')).to eql(1)
+      trie.put('h', 1)
+      expect(trie.get('h')).to eql(1)
+
+      trie.put('ha', 1)
+      expect(trie.get('ha')).to eql(1)
     end
   end
 
