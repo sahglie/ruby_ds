@@ -51,4 +51,17 @@ describe Trie do
       expect(trie.get("hat")).to be_nil
     end
   end
+
+  context('#longest_prefix_of(query)') do
+    it "should find the key that is longest prefix of query string" do
+      trie.put("app", 1)
+      trie.put("apple", 1)
+      trie.put("applepie", 1)
+
+      expect(trie.longest_prefix_of("applepants")).to eql("apple")
+      expect(trie.longest_prefix_of("ap")).to eql("")
+      expect(trie.longest_prefix_of("bumblebee")).to eql("")
+      expect(trie.longest_prefix_of("")).to eql("")
+    end
+  end
 end

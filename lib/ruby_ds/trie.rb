@@ -30,7 +30,12 @@ class Trie
   end
 
   def delete(key)
-    do_delete(root, key, 0)
+    do_delete(@root, key, 0)
+  end
+
+  def longest_prefix_of(query)
+    length = do_longest_prefix_of(@root, query, 0, 0)
+    query[0...length]
   end
 
   private
@@ -72,5 +77,14 @@ class Trie
       index = key[pos].ord
       do_delete(node.next[index], key, pos+1)
     end
+  end
+
+  def do_longest_prefix_of(node, query, d, length)
+    return length if node.nil?
+    length = d if node.val
+    return length if d == query.length
+
+    c = query[d].ord
+    do_longest_prefix_of(node.next[c], query, d+1, length)
   end
 end
