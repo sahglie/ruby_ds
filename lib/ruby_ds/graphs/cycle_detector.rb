@@ -5,14 +5,12 @@ module Graphs
 
     def initialize(graph)
       @graph = graph
-      @cycle = false
+      @onstack = {}
       @marked = {}
 
-      @count = 0
       graph.vertices.each do |v|
-        dfs(v)
+        dfs(v) unless @marked[v]
         break if has_cycle?
-        @count += 1
       end
     end
 
@@ -23,19 +21,20 @@ module Graphs
     private
 
     def dfs(v)
-      return if @marked[v]
-      @marked[v] = @count
+      @marked[v] = true
+      @onstack[v] = true
 
       @graph.adj(v).each do |w|
-        if @marked[w] == @count
-          pp v
-          pp w
-          @cycle = true
-          break
-        end
+        return if has_cycle?
 
-        dfs(w)
+        if !@marked[w]
+          dfs(w)
+        elsif @onstack[w]
+          @cycle = true
+        end
       end
+
+      @onstack[v] = false
     end
   end
 end
