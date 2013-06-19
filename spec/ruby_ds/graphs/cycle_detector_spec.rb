@@ -7,16 +7,19 @@ describe "Graphs::CycleDetector for cyclic graph" do
   before(:each) do
     graph.add_edge("a", "b")
     graph.add_edge("b", "c")
-    graph.add_edge("c", "e")
-    graph.add_edge("c", "f")
+    graph.add_edge("b", "e")
+    graph.add_edge("b", "f")
     graph.add_edge("e", "f")
-    graph.add_edge("e", "a")
     graph.add_edge("e", "d")
+    graph.add_edge("d", "a")
   end
 
   context("has_cycle?") do
     it 'is true if graph has a cycle' do
-      expect(Graphs::CycleDetector.new(graph).has_cycle?).to be_true
+      finder = Graphs::CycleDetector.new(graph)
+      expect(finder.has_cycle?).to be_true
+
+      pp finder.cycle
     end
   end
 end
