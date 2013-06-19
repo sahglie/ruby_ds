@@ -8,6 +8,7 @@ require 'ruby_ds/string_search/boyer_moore'
 require 'ruby_ds/graphs/graph'
 require 'ruby_ds/graphs/di_graph'
 require 'ruby_ds/graphs/cycle_detector'
+require 'ruby_ds/graphs/cc'
 require 'ruby_ds/graphs/dfs'
 require 'ruby_ds/graphs/bfs'
 
