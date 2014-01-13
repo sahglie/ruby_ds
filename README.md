@@ -1,6 +1,6 @@
 # RubyDs
 
-Common data structures implemented in ruby
+Common data structures implemented in Ruby
 
 ## Installation
 
